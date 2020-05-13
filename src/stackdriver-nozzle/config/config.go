@@ -73,9 +73,9 @@ type Config struct {
 	// Reverse Log Proxy (Firehose alternative) config
 	//TODO(evanbrown): Determine which flags should be required
 	RLPAddress           string `envconfig:"rlp_address_colon_port" required:"false"`
-  RLPCACertFile        string `envconfig:"rlp_ca_cert_file" required:"false"`
-  RLPCertFile          string `envconfig:"rlp_cert_file" required:"false"`
-  RLPKeyFile           string `envconfig:"rlp_key_file" required:"false"`
+	RLPCACertFile        string `envconfig:"rlp_ca_cert_file" required:"false"`
+	RLPCertFile          string `envconfig:"rlp_cert_file" required:"false"`
+	RLPKeyFile           string `envconfig:"rlp_key_file" required:"false"`
 	RLPShardID           string `envconfig:"rlp_shard_id" default:"stackdriver-nozzle"`
 	RLPDeterministicName string `envconfig:"rlp_deterministic_name"`
 
@@ -92,6 +92,8 @@ type Config struct {
 	MetricPathPrefix      string `envconfig:"metric_path_prefix" default:"firehose"`
 	FoundationName        string `envconfig:"foundation_name" default:"cf"`
 	ResolveAppMetadata    bool   `envconfig:"resolve_app_metadata"`
+	// The amount of time to retain cached info about an app; -1 "caches" permanently; 0 indicates no caching; positive int caches for supplied number of seconds
+	AppMetadataCachePeriod int   `envconfig:"app_info_cache_period" default:"-1"`
 	NozzleID              string `envconfig:"nozzle_id" default:"local-nozzle"`
 	NozzleName            string `envconfig:"nozzle_name" default:"local-nozzle"`
 	NozzleZone            string `envconfig:"nozzle_zone" default:"local-nozzle"`
